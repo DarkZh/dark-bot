@@ -360,12 +360,10 @@ async function starts() {
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'FBI ta vindo ai'})
 					})
 					break
-				case 'nsfwloli':
-					if (!isNsfw) return reply('❌ *FALSO* ❌')
-					loli.getNSFWLoli(async (err, res) => {
-						if (err) return reply('❌ *ERRO* ❌')
-						buffer = await getBuffer(res.url)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'gg jogador de rato'})
+				case 'waifu':
+                    const waifu = await axios.get('https://mhankbarbar.herokuapp.com/api/waifu')
+                    console.log(waifu.image)
+                    client.sendFileFromUrl(from, waifu.data.image, 'Waifu.jpg', `❤️ Name : ${waifu.data.name}\n🎉️ Description : ${waifu.data.desc}\n\n❇️ Source : ${waifu.data.source}`, id)
 					})
 					break
 				case 'hilih':
